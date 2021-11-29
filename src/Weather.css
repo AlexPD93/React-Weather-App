@@ -1,13 +1,8 @@
-body {
-  font-family: "Roboto Mono", monospace;
-  margin: 0;
-}
-
 .container {
   background: #55b3c3;
   border: 2px solid black;
-  display: block;
   margin: 0 auto;
+  display: block;
   width: 99%;
   height: 99vh;
   position: relative;

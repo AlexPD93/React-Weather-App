@@ -126,7 +126,7 @@ export default function Weather() {
             target="_blank"
             rel="noreferrer"
             class="footer-link"
-            href="https://github.com/AlexPD93/my-weather-app"
+            href="https://github.com/AlexPD93/React-Weather-App"
           >
             Open-sourced on Github
           </a>

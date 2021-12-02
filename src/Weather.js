@@ -16,6 +16,11 @@ export default function Weather() {
     />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>;
+
+  let apiKey = `d3da927bc59cf1a6983a5b442fc7678e`;
+  let city = `London`;
+  let units = `units=metric`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&${units}`;
   return (
     <div className="Weather">
       <div className="container">

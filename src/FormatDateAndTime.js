@@ -9,8 +9,11 @@ export default function FormatDate(prop) {
   let hours = now.getHours();
   if (hours < 10) hours = "0" + now.getHours();
 
+  let minutes = now.getMinutes();
+  if (minutes < 10) minutes = "0" + now.getMinutes();
+
   let date = now.getDate();
-  if (date < 10) date = "0" + now.getDate;
+  if (date < 10) date = "0" + now.getDate();
 
   let months = [
     "01",
@@ -32,7 +35,15 @@ export default function FormatDate(prop) {
 
   return (
     <div className="FormatDate">
-      <h1>Hello</h1>
+      <h3>
+        <span>{day} </span>
+        <span>
+          {hours}:{minutes}
+        </span>
+      </h3>
+      <h3>
+        {date}/{month}/{year}
+      </h3>
     </div>
   );
 }

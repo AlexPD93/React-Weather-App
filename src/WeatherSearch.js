@@ -165,11 +165,11 @@ export default function Weather() {
     return (
       <div className="container">
         <div className="temperature-text-wrapper">
-          <div className="change-city-text">
-            Search city
+          <div className="initial-change-city-text">
+            Search city!
             <form className="change-city-form" onSubmit={handleSubmit}>
               <input
-                className="city-input"
+                className="initial-city-input"
                 type="search"
                 autofocus="off"
                 placeholder="Type a city..."

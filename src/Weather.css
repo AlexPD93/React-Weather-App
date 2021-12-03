@@ -35,6 +35,20 @@ h4 {
   height: 20px;
 }
 
+.initial-change-city-text {
+  font-size: 90px;
+  text-align: center;
+}
+
+.initial-city-input {
+  padding: 1em;
+  background-color: #b3ebf0;
+  border: 1px #b3ebf0 solid;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
 .change-city-text {
   color: #b3ebf0;
   text-align: center;

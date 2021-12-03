@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import SunEmoji from "./Images/Sun-emoji.png";
 import "./Weather.css";
 
@@ -17,27 +18,48 @@ export default function Weather() {
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>;
 
+  let [city, setCity] = useState("");
+  let citySearch = setCity;
+
+  let [temperature, setTemperature] = useState(null);
+
+  function updateTemperature(response) {
+    setTemperature(response.data.main.temp);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    citySearch(`${setCity}`);
+  }
+
+  function updateCity(event) {
+    event.preventDefault();
+    setCity = event.target.value;
+  }
+
   let apiKey = `d3da927bc59cf1a6983a5b442fc7678e`;
-  let city = `London`;
   let units = `units=metric`;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&${units}`;
+  axios.get(url).then(updateTemperature);
+
   return (
     <div className="Weather">
       <div className="container">
         <div className="temperature-text-wrapper">
           <div className="change-city-text">
             Change city
-            <form className="change-city-form">
+            <form className="change-city-form" onSubmit={handleSubmit}>
               <input
                 className="city-input"
-                type="text"
-                autofocus="off"
+                type="search"
+                autofocus="on"
                 placeholder="Type a city..."
+                onChange={updateCity}
               />
             </form>
             <h3>
-              <span id="day">Wed </span>
-              <span id="time">22:01</span>
+              <span>Wed </span>
+              <span>22:01</span>
             </h3>
             <h3>24/11/21</h3>
             <h4>Sunny</h4>
@@ -50,10 +72,10 @@ export default function Weather() {
         </div>
         <h1>
           {" "}
-          <span>Oaxaca</span> <span>Oax</span>{" "}
+          <span>{city}</span> <span>Oax</span>{" "}
         </h1>
         <div className="current-day-wrapper">
-          <h2>20</h2>
+          <h2>{Math.round(temperature)}</h2>
           <div className="temp-measurement-celcius">
             <a className="celcius-temp" href="/">
               °C

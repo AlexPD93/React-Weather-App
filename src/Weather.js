@@ -21,10 +21,14 @@ export default function Weather() {
   let [city, setCity] = useState("");
   let citySearch = setCity;
 
-  let [temperature, setTemperature] = useState(null);
+  let [weather, setWeather] = useState("");
 
-  function updateTemperature(response) {
-    setTemperature(response.data.main.temp);
+  function displayWeather(response) {
+    console.log(response.data);
+    setWeather({
+      temperature: Math.round(response.data.main.temp),
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    });
   }
 
   function handleSubmit(event) {
@@ -40,7 +44,7 @@ export default function Weather() {
   let apiKey = `d3da927bc59cf1a6983a5b442fc7678e`;
   let units = `units=metric`;
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&${units}`;
-  axios.get(url).then(updateTemperature);
+  axios.get(url).then(displayWeather);
 
   return (
     <div className="Weather">
@@ -52,7 +56,7 @@ export default function Weather() {
               <input
                 className="city-input"
                 type="search"
-                autofocus="on"
+                autofocus="off"
                 placeholder="Type a city..."
                 onChange={updateCity}
               />
@@ -75,7 +79,7 @@ export default function Weather() {
           <span>{city}</span> <span>Oax</span>{" "}
         </h1>
         <div className="current-day-wrapper">
-          <h2>{Math.round(temperature)}</h2>
+          <h2>{weather.temperature}</h2>
           <div className="temp-measurement-celcius">
             <a className="celcius-temp" href="/">
               °C
@@ -89,9 +93,8 @@ export default function Weather() {
           <div className="main-weather-emoji-div">
             <img
               className="main-weather-emoji"
-              src={SunEmoji}
-              alt="Main weather emoji"
-              id="icon"
+              src={weather.icon}
+              alt="Weather icon"
             />
           </div>
         </div>

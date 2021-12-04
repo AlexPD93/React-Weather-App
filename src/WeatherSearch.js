@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import SunEmoji from "./Images/Sun-emoji.png";
 import FormatDateAndTime from "./FormatDateAndTime";
+import Temperature from "./Temperature";
 import "./Weather.css";
 
 export default function Weather() {
@@ -23,7 +24,6 @@ export default function Weather() {
   const [weather, setWeather] = useState({ ready: false });
 
   function displayWeather(response) {
-    console.log(response.data.name);
     setWeather({
       ready: true,
       city: response.data.name,
@@ -75,26 +75,7 @@ export default function Weather() {
             {" "}
             <span>{weather.city}</span> <span>{weather.country}</span>{" "}
           </h1>
-          <div className="current-day-wrapper">
-            <h2>{weather.temperature}</h2>
-            <div className="temp-measurement-celcius">
-              <a className="celcius-temp" href="/">
-                °C
-              </a>
-            </div>
-            <div className="temp-measurement-fahren">
-              <a className="fahren-temp remove-underline" href="/">
-                °F
-              </a>
-            </div>
-            <div className="main-weather-emoji-div">
-              <img
-                className="main-weather-emoji"
-                src={weather.icon}
-                alt="Weather icon"
-              />
-            </div>
-          </div>
+          <Temperature celcius={weather.temperature} icon={weather.icon} />
           <div className="forecast-wrapper">
             <div class="day-weather">
               <div>Mon</div>

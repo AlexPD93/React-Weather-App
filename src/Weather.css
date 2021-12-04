@@ -115,6 +115,10 @@ h2 {
   text-decoration: none;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .main-weather-emoji-div {
   grid-column: 2;
   align-self: center;

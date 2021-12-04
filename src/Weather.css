@@ -65,6 +65,13 @@ h4 {
   color: #000000;
 }
 
+.current-location {
+  text-decoration: none;
+  color: #ffc303;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
 .current-day-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -82,11 +89,17 @@ h2 {
   grid-row: 1;
 }
 
-.current-location {
+.celcius-temp,
+.fahren-temp {
+  color: #b3ebf0;
+}
+
+.remove-underline {
   text-decoration: none;
-  color: #ffc303;
-  border-radius: 20px;
-  font-size: 15px;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .temp-measurement-celcius {
@@ -104,19 +117,6 @@ h2 {
   justify-self: end;
   margin-right: 20px;
   margin-top: 50px;
-}
-
-.celcius-temp,
-.fahren-temp {
-  color: #b3ebf0;
-}
-
-.remove-underline {
-  text-decoration: none;
-}
-
-.underline {
-  text-decoration: underline;
 }
 
 .main-weather-emoji-div {

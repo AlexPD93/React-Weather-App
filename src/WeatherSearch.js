@@ -77,7 +77,11 @@ export default function Weather() {
             <span>{weather.city}</span> <span>{weather.country}</span>{" "}
           </h1>
           <Temperature celcius={weather.temperature} icon={weather.icon} />
-          <WeatherForecast lat={weather.lat} lon={weather.lon} />
+          <WeatherForecast
+            lat={weather.lat}
+            lon={weather.lon}
+            icon={weather.icon}
+          />
           <footer className="footer">
             Coded by Alexander Perez-Davies ||{" "}
             <a

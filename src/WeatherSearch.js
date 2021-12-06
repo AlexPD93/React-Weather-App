@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
-import SunEmoji from "./Images/Sun-emoji.png";
 import FormatDateAndTime from "./FormatDateAndTime";
 import Temperature from "./Temperature";
+import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 
 export default function Weather() {
@@ -26,6 +26,8 @@ export default function Weather() {
   function displayWeather(response) {
     setWeather({
       ready: true,
+      lat: response.data.coord.lat,
+      lon: response.data.coord.lon,
       city: response.data.name,
       temperature: Math.round(response.data.main.temp),
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
@@ -33,7 +35,6 @@ export default function Weather() {
       country: response.data.sys.country,
     });
   }
-
   function handleSubmit(event) {
     event.preventDefault();
     let apiKey = `d89a26edf6a0b20551e206f2afd723b2`;
@@ -76,58 +77,7 @@ export default function Weather() {
             <span>{weather.city}</span> <span>{weather.country}</span>{" "}
           </h1>
           <Temperature celcius={weather.temperature} icon={weather.icon} />
-          <div className="forecast-wrapper">
-            <div class="day-weather">
-              <div>Mon</div>
-              <div class="weather-image">
-                <img class="weather-emojis" alt="Sun emoji" src={SunEmoji} />
-              </div>
-              <div class="day-temperatures">
-                <span class="weather-forecast-temperature-max">10/</span>
-                <span class="weather-forecast-temperature-max">5</span>
-              </div>
-            </div>
-            <div class="day-weather">
-              <div>Tue</div>
-              <div class="weather-image">
-                <img class="weather-emojis" alt="Sun emoji" src={SunEmoji} />
-              </div>
-              <div class="day-temperatures">
-                <span class="weather-forecast-temperature-max">10/</span>
-                <span class="weather-forecast-temperature-max">5</span>
-              </div>
-            </div>
-            <div class="day-weather">
-              <div>Wed</div>
-              <div class="weather-image">
-                <img class="weather-emojis" alt="Sun emoji" src={SunEmoji} />
-              </div>
-              <div class="day-temperatures">
-                <span class="weather-forecast-temperature-max">10/</span>
-                <span class="weather-forecast-temperature-max">5</span>
-              </div>
-            </div>
-            <div class="day-weather">
-              <div>Thu</div>
-              <div class="weather-image">
-                <img class="weather-emojis" alt="Sun emoji" src={SunEmoji} />
-              </div>
-              <div class="day-temperatures">
-                <span class="weather-forecast-temperature-max">10/</span>
-                <span class="weather-forecast-temperature-max">5</span>
-              </div>
-            </div>
-            <div class="day-weather">
-              <div>Fri</div>
-              <div class="weather-image">
-                <img class="weather-emojis" alt="Sun emoji" src={SunEmoji} />
-              </div>
-              <div class="day-temperatures">
-                <span class="weather-forecast-temperature-max">10/</span>
-                <span class="weather-forecast-temperature-max">5</span>
-              </div>
-            </div>
-          </div>
+          <WeatherForecast lat={weather.lat} lon={weather.lon} />
           <footer className="footer">
             Coded by Alexander Perez-Davies ||{" "}
             <a

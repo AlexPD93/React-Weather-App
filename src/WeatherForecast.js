@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherForecastDay from "./WeatherForecastDay";
+import "./Weather.css";
 
 export default function WeatherForecast(props) {
   const [loaded, setLoaded] = useState(false);
@@ -19,7 +20,7 @@ export default function WeatherForecast(props) {
             if (index < 5)
               return (
                 <div class="day-weather" key={index}>
-                  <WeatherForecastDay data={dailyForecast} icon={props.icon} />
+                  <WeatherForecastDay data={dailyForecast} />
                 </div>
               );
             else {

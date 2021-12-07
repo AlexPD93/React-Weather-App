@@ -80,56 +80,6 @@ h4 {
   max-width: 450px;
 }
 
-h2 {
-  color: #b3ebf0;
-  font-size: 75px;
-  align-self: center;
-  justify-self: center;
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.celcius-temp,
-.fahren-temp {
-  color: #b3ebf0;
-}
-
-.remove-underline {
-  text-decoration: none;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.temp-measurement-celcius {
-  align-self: center;
-  grid-column: 1;
-  justify-self: end;
-  grid-row: 1;
-  margin-right: 20px;
-}
-
-.temp-measurement-fahren {
-  align-self: center;
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: end;
-  margin-right: 20px;
-  margin-top: 50px;
-}
-
-.main-weather-emoji-div {
-  grid-column: 2;
-  align-self: center;
-  justify-self: center;
-}
-
-.main-weather-emoji {
-  width: 130px;
-  justify-self: center;
-}
-
 .forecast-wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

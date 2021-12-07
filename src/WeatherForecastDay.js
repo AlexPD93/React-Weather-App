@@ -1,20 +1,20 @@
 import React from "react";
 
 export default function WeatherForecastDay(props) {
+  console.log(props.data.temp.max);
   function maxTemperature() {
-    let temperature = Math.round(props.maxTemp);
+    let temperature = Math.round(props.data.temp.max);
     return `${temperature}°C/`;
   }
 
   function minTemperature() {
-    let temperature = Math.round(props.minTemp);
+    let temperature = Math.round(props.data.temp.min);
     return `${temperature}°C`;
   }
 
   function day() {
-    let date = new Date(props.day * 1000);
+    let date = new Date(props.data.dt * 1000);
     let day = date.getDay();
-
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     return days[day];
   }

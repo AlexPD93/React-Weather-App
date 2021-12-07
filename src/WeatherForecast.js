@@ -15,46 +15,17 @@ export default function WeatherForecast(props) {
     return (
       <div className="WeatherForecast">
         <div className="forecast-wrapper">
-          <div class="day-weather">
-            <WeatherForecastDay
-              maxTemp={forecast[0].temp.max}
-              minTemp={forecast[0].temp.min}
-              day={forecast[0].dt}
-              icon={props.icon}
-            />{" "}
-          </div>
-          <div class="day-weather">
-            <WeatherForecastDay
-              maxTemp={forecast[1].temp.max}
-              minTemp={forecast[1].temp.min}
-              day={forecast[1].dt}
-              icon={props.icon}
-            />{" "}
-          </div>
-          <div class="day-weather">
-            <WeatherForecastDay
-              maxTemp={forecast[2].temp.max}
-              minTemp={forecast[2].temp.min}
-              day={forecast[2].dt}
-              icon={props.icon}
-            />{" "}
-          </div>
-          <div class="day-weather">
-            <WeatherForecastDay
-              maxTemp={forecast[3].temp.max}
-              minTemp={forecast[3].temp.min}
-              day={forecast[3].dt}
-              icon={props.icon}
-            />{" "}
-          </div>
-          <div class="day-weather">
-            <WeatherForecastDay
-              maxTemp={forecast[4].temp.max}
-              minTemp={forecast[4].temp.min}
-              day={forecast[4].dt}
-              icon={props.icon}
-            />{" "}
-          </div>
+          {forecast.map(function (dailyForecast, index) {
+            if (index < 5)
+              return (
+                <div class="day-weather" key={index}>
+                  <WeatherForecastDay data={dailyForecast} icon={props.icon} />
+                </div>
+              );
+            else {
+              return null;
+            }
+          })}
         </div>
       </div>
     );

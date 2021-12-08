@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import FormatDateAndTime from "./FormatDateAndTime";
 import Temperature from "./Temperature";
+import CurrentLocation from "./CurrentLocation";
 import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 
@@ -33,6 +34,7 @@ export default function Weather() {
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       description: response.data.weather[0].description,
       country: response.data.sys.country,
+      time: response.data.dt,
     });
   }
   function handleSubmit(event) {
@@ -58,18 +60,14 @@ export default function Weather() {
                 <input
                   className="city-input"
                   type="search"
-                  autofocus="off"
+                  autoFocus="off"
                   placeholder="Type a city..."
                   onChange={updateCity}
                 />
               </form>
-              <FormatDateAndTime />
+              <FormatDateAndTime time={weather.time} />
               <h4 className="weatherDescription">{weather.description}</h4>
-              <div>
-                <a className="current-location" href="/">
-                  Current Location
-                </a>
-              </div>
+              <CurrentLocation icon={weather.icon} />
             </div>
           </div>
           <h1>
@@ -87,7 +85,7 @@ export default function Weather() {
             <a
               target="_blank"
               rel="noreferrer"
-              class="footer-link"
+              className="footer-link"
               href="https://github.com/AlexPD93/React-Weather-App"
             >
               Open-sourced on Github
@@ -101,12 +99,12 @@ export default function Weather() {
       <div className="container">
         <div className="temperature-text-wrapper">
           <div className="initial-change-city-text">
-            Search city!
+            Search a city!
             <form className="change-city-form" onSubmit={handleSubmit}>
               <input
                 className="initial-city-input"
                 type="search"
-                autofocus="off"
+                autoFocus="off"
                 placeholder="Type a city..."
                 onChange={updateCity}
               />

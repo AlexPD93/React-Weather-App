@@ -1,11 +1,7 @@
 import React from "react";
 
-export default function FormatDate(prop) {
+export default function FormatDate(props) {
   let now = new Date();
-
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let day = days[now.getDay()];
-
   let hours = now.getHours();
   if (hours < 10) hours = "0" + now.getHours();
 
@@ -32,11 +28,17 @@ export default function FormatDate(prop) {
   let month = months[now.getMonth()];
 
   let year = now.getFullYear();
+  function day() {
+    let date = new Date(props.time * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return days[day];
+  }
 
   return (
     <div className="FormatDate">
       <h3>
-        <span>{day} </span>
+        <span>{day()} </span>
         <span>
           {hours}:{minutes}
         </span>

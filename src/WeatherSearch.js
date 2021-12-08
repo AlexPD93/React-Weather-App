@@ -57,7 +57,6 @@ export default function Weather() {
   }
 
   function getCurrentLocation(event) {
-    event.preventDefault();
     navigator.geolocation.getCurrentPosition(showPosition);
   }
 
@@ -115,21 +114,56 @@ export default function Weather() {
       </div>
     );
   } else {
+    getCurrentLocation();
     return (
-      <div className="container">
-        <div className="temperature-text-wrapper">
-          <div className="initial-change-city-text">
-            Search a city!
-            <form className="change-city-form" onSubmit={handleSubmit}>
-              <input
-                className="initial-city-input"
-                type="search"
-                autoFocus="off"
-                placeholder="Type a city..."
-                onChange={updateCity}
-              />
-            </form>
+      <div className="Weather">
+        <div className="container">
+          <div className="temperature-text-wrapper">
+            <div className="change-city-text">
+              Change city
+              <form className="change-city-form" onSubmit={handleSubmit}>
+                <input
+                  className="city-input"
+                  type="search"
+                  autoFocus="off"
+                  placeholder="Type a city..."
+                  onChange={updateCity}
+                />
+              </form>
+              <FormatDateAndTime time={weather.time} />
+              <h4 className="weatherDescription">{weather.description}</h4>
+              <div>
+                <a
+                  className="current-location"
+                  onClick={getCurrentLocation}
+                  href="/"
+                >
+                  Current Location
+                </a>
+              </div>
+            </div>
           </div>
+          <h1>
+            {" "}
+            <span>{weather.city}</span> <span>{weather.country}</span>{" "}
+          </h1>
+          <Temperature celcius={weather.temperature} icon={weather.icon} />
+          <WeatherForecast
+            lat={weather.lat}
+            lon={weather.lon}
+            icon={weather.icon}
+          />
+          <footer className="footer">
+            Coded by Alexander Perez-Davies ||{" "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              className="footer-link"
+              href="https://github.com/AlexPD93/React-Weather-App"
+            >
+              Open-sourced on Github
+            </a>
+          </footer>
         </div>
       </div>
     );

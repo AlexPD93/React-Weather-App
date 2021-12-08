@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import FormatDateAndTime from "./FormatDateAndTime";
 import Temperature from "./Temperature";
-import CurrentLocation from "./CurrentLocation";
 import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 
@@ -49,6 +48,19 @@ export default function Weather() {
     setCity(event.target.value);
   }
 
+  function showPosition(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let apiKey = `d3da927bc59cf1a6983a5b442fc7678e`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+    axios.get(`${apiUrl}`).then(displayWeather);
+  }
+
+  function getCurrentLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+
   if (weather.ready) {
     return (
       <div className="Weather">
@@ -67,7 +79,15 @@ export default function Weather() {
               </form>
               <FormatDateAndTime time={weather.time} />
               <h4 className="weatherDescription">{weather.description}</h4>
-              <CurrentLocation icon={weather.icon} />
+              <div>
+                <a
+                  className="current-location"
+                  onClick={getCurrentLocation}
+                  href="/"
+                >
+                  Current Location
+                </a>
+              </div>
             </div>
           </div>
           <h1>

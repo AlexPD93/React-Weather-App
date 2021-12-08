@@ -26,6 +26,7 @@ export default function Weather() {
   function displayWeather(response) {
     setWeather({
       ready: true,
+      coords: response.data.coord,
       lat: response.data.coord.lat,
       lon: response.data.coord.lon,
       city: response.data.name,
@@ -76,7 +77,11 @@ export default function Weather() {
                   onChange={updateCity}
                 />
               </form>
-              <FormatDateAndTime time={weather.time} />
+              <FormatDateAndTime
+                time={weather.time}
+                city={weather.city}
+                coords={weather.coords}
+              />
               <h4 className="weatherDescription">{weather.description}</h4>
               <div>
                 <a

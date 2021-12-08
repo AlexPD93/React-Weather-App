@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function FormatDate(props) {
   const [exactTime, setexactTime] = useState({ ready: false });
+  useEffect(() => {
+    setexactTime(false);
+  }, [props.time]);
 
   function day() {
     let date = new Date(props.time * 1000);
@@ -10,6 +13,19 @@ export default function FormatDate(props) {
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     return days[day];
   }
+
+  function getForecast(coords) {
+    let latitude = coords.lat;
+    let longitude = coords.lon;
+    let apiKey = `d3da927bc59cf1a6983a5b442fc7678e`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then();
+  }
+
+  //function displayForecast(response) {
+  //let day = response.data.daily[0].dt;
+  //return day;
+  //}
 
   function showLiveTime(response) {
     setexactTime({
@@ -37,6 +53,7 @@ export default function FormatDate(props) {
     let apiKey = `dac344694bff4911a980eb0b3d3c6c11`;
     let apiUrl = `https://timezone.abstractapi.com/v1/current_time?api_key=${apiKey}&location=${props.city}`;
     axios.get(`${apiUrl}`).then(showLiveTime);
+    getForecast(props.coords);
     return null;
   }
 }

@@ -80,7 +80,8 @@ export default function Weather() {
               <FormatDateAndTime
                 time={weather.time}
                 city={weather.city}
-                coords={weather.coords}
+                lat={weather.lat}
+                lon={weather.lon}
               />
               <h4 className="weatherDescription">{weather.description}</h4>
               <div>
@@ -135,7 +136,6 @@ export default function Weather() {
                   onChange={updateCity}
                 />
               </form>
-              <FormatDateAndTime time={weather.time} />
               <h4 className="weatherDescription">{weather.description}</h4>
               <div>
                 <a

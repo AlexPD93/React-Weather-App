@@ -8,21 +8,15 @@ export default function FormatDate(props) {
     setexactTime(false);
   }, [props.time]);
 
-  function getDay() {
-    let date = new Date(props.time * 1000);
-    let day = date.getDay();
-    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    return days[day];
-  }
-
   function showLiveTime(response) {
     console.log(response);
     setexactTime({
       ready: true,
-      currentTime: response.data.datetime.slice(10, 16),
-      todayDate: response.data.datetime.slice(8, 10),
-      month: response.data.datetime.slice(5, 7),
-      year: response.data.datetime.slice(0, 4),
+      day: response.data.date_time_wti.slice(0, 3),
+      currentTime: response.data.date_time.slice(10, 16),
+      todayDate: response.data.date.slice(8, 10),
+      month: response.data.date.slice(5, 7),
+      year: response.data.date.slice(0, 4),
     });
   }
 
@@ -30,7 +24,7 @@ export default function FormatDate(props) {
     return (
       <div className="FormatDate">
         <h3>
-          <span>{getDay()} </span>
+          <span>{exactTime.day} </span>
           <span>{exactTime.currentTime}</span>
         </h3>
         <h3>
@@ -39,8 +33,8 @@ export default function FormatDate(props) {
       </div>
     );
   } else {
-    let apiKey = `dac344694bff4911a980eb0b3d3c6c11`;
-    let apiUrl = `https://timezone.abstractapi.com/v1/current_time?api_key=${apiKey}&location=${props.city}`;
+    let apiKey = `1da0e66d8c6e4cb08f8b2086326b20b6`;
+    let apiUrl = `https://api.ipgeolocation.io/timezone?apiKey=${apiKey}&location=${props.city}`;
     axios.get(`${apiUrl}`).then(showLiveTime);
     return null;
   }

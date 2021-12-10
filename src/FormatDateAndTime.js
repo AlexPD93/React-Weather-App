@@ -9,7 +9,6 @@ export default function FormatDate(props) {
   }, [props.time]);
 
   function showLiveTime(response) {
-    console.log(response);
     setexactTime({
       ready: true,
       day: response.data.date_time_wti.slice(0, 3),
